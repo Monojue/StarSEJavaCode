@@ -1,6 +1,7 @@
 package t10_LibraryManagementSystem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Member {
 
@@ -38,4 +39,24 @@ public class Member {
 	public void returnBook(Book book) {
 		borrowedBooks.remove(book);
 	}
+	
+	public List<Book> getBorrowedBookList() {
+		return List.copyOf(borrowedBooks);
+	}
+
+	public String getListofBookName() {
+	
+		String str = "";
+		borrowedBooks.stream().forEach(b -> {
+			
+		})
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("ID : %s, Name : %s\nBorrowedBooks : %s", 
+				memberID, name, );
+	}
+	
+	
 }

@@ -1,6 +1,7 @@
 package t10_LibraryManagementSystem;
 
 public class Book {
+
 	private Integer bookId;
 	private String title;
 	private Integer lendFlag;
@@ -34,6 +35,11 @@ public class Book {
 
 	public void setLendFlag(Integer lendFlag) {
 		this.lendFlag = lendFlag;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%d %s (%s)", getBookId(), getTitle(), (getLendFlag() == 1) ? "borrowed" : "can borrow");
 	}
 
 }

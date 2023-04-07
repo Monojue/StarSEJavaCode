@@ -4,26 +4,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Books {
-	
-	List<Book> books = new ArrayList<>();
-	
+
+	private List<Book> books = new ArrayList<>();
+
 	public void addNewBook(int bookId, String title) {
 		books.add(new Book(bookId, title));
 	}
-	
+
 	public void displayAllBooks() {
-		books.stream().forEach(b ->{
-			System.out.println(String.format("%d\\t%s\\t%s", 
-					b.getBookId(), b.getTitle(), (b.getLendFlag()==0)?"borrowed" : "can borrow"));
-		});
+		books.stream().forEach(b -> System.out.println(b.toString()));
 	}
-	
+
+	public Book getBookById(int id) {
+		try {
+			return books.get(id - 1);
+		}catch(IndexOutOfBoundsException e) {
+			throw new BookNotFoundException("Book does not found!");
+		}
+	}
+
+	public boolean searchBookById(int id) {
+		return books.contains(getBookById(id));
+	}
+
+	public boolean isAlreadyLend(int id) {
+		return getBookById(id).getLendFlag() == 1;
+	}
+
 	public void lendBook(int id) {
-		
+		getBookById(id).setLendFlag(1);
 	}
-	
+
 	public void returnBook(int id) {
-		
+		getBookById(id).setLendFlag(0);
 	}
 
 }
