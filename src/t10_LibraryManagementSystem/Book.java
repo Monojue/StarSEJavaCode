@@ -41,5 +41,9 @@ public class Book {
 	public String toString() {
 		return String.format("%d %s (%s)", getBookId(), getTitle(), (getLendFlag() == 1) ? "borrowed" : "can borrow");
 	}
+	
+	public String toStringTitle() {
+		return String.format("%d| %s", getBookId(), getTitle());
+	}
 
 }

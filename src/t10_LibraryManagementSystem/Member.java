@@ -31,32 +31,30 @@ public class Member {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public void lendBook(Book book) {
 		borrowedBooks.add(book);
 	}
-	
+
 	public void returnBook(Book book) {
 		borrowedBooks.remove(book);
 	}
-	
+
 	public List<Book> getBorrowedBookList() {
 		return List.copyOf(borrowedBooks);
 	}
 
-	public String getListofBookName() {
-	
-		String str = "";
-		borrowedBooks.stream().forEach(b -> {
-			
-		})
+	public String getBookList() {
+		String title = "";
+		for (Book book : borrowedBooks) {
+			title += "{" + book.toStringTitle() + "}";
+		}
+		return title;
 	}
-	
+
 	@Override
 	public String toString() {
-		return String.format("ID : %s, Name : %s\nBorrowedBooks : %s", 
-				memberID, name, );
+		return String.format("ID : %s, Name : %s\nBorrowedBooks : %s", memberID, name, getBookList());
 	}
-	
-	
+
 }

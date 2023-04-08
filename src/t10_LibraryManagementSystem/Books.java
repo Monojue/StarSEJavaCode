@@ -14,6 +14,14 @@ public class Books {
 	public void displayAllBooks() {
 		books.stream().forEach(b -> System.out.println(b.toString()));
 	}
+	
+	public void displayAvailableBooks() {
+		books.stream().forEach(b -> {
+			if(b.getLendFlag() == 0) {
+				System.out.println(b.toString());
+			}
+		});
+	}
 
 	public Book getBookById(int id) {
 		try {
@@ -39,4 +47,5 @@ public class Books {
 		getBookById(id).setLendFlag(0);
 	}
 
+	
 }

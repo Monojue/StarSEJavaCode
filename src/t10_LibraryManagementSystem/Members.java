@@ -15,6 +15,7 @@ public class Members {
 		members.stream().forEach(m -> System.out.println(m.toString()));
 	}
 
+	// check member exit in DB or not
 	public boolean checkMemeberById(int id) {
 		return members.stream().anyMatch(m -> m.getMemberID() == id);
 	}
@@ -31,6 +32,7 @@ public class Members {
 		return members.contains(getMemberById(id));
 	}
 
+	// check this member lend this book
 	public boolean isMemberlendTheBook(int memberId, Book book) {
 		return getMemberById(memberId).getBorrowedBookList().contains(book);
 	}
