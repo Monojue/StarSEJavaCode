@@ -1,4 +1,5 @@
 package t09_HotelBookingSystem;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -11,39 +12,48 @@ public class HotelBookingSystem {
 
 	public static void main(String[] args) {
 
+		// set all roomStatus as true (true : not booked, false : booked)
 		initializeRooms();
 
 		while (!exit) {
-			displayOptions();
-			switch (menuId) {
-			case 1:
-				bookRoom();
-				break;
-			case 2:
-				cancelBooking();
-				break;
-			case 3:
-				displayBookings();
-				break;
-			case 4:
-				exit();
-				break;
-			default:
-				showErrorMessage();
-				break;
+			try {
+				// display the initial display.
+				displayOptions();
+				switch (menuId) {
+				case 1:
+					bookRoom();
+					break;
+				case 2:
+					cancelBooking();
+					break;
+				case 3:
+					displayBookings();
+					break;
+				case 4:
+					exit();
+					break;
+				default:
+					showErrorMessage();
+					break;
+				}
+			} catch (InputMismatchException e) {
+				scan.next();
+				System.out.println(">>Invalid input. Please enter number only.");
 			}
 		}
 	}
 
+	// set all roomStatus as true (true : not booked, false : booked)
 	private static void initializeRooms() throws InputMismatchException {
 		for (int i = 0; i < roomStatus.length; i++) {
 			roomStatus[i] = true;
 		}
 	}
 
-	private static void displayOptions() {
+	// initial display and get user input.
+	private static void displayOptions() throws InputMismatchException {
 		System.out.print("""
-				
+
 				Welcome to the Hotel Booking System!
 				1. Book a room
 				2. Cancel booking
@@ -57,7 +67,9 @@ public class HotelBookingSystem {
 	private static void bookRoom() throws InputMismatchException {
 		System.out.println(">>Please enter the room number you want to book (1-10) : ");
 
+		// get the room no from user.
 		var roomNo = scan.nextInt() - 1;
+		// if room can be book. set room status as booked.
 		if (roomStatus[roomNo]) {
 			System.out.println(">>Booking successful! Thank you for choosing our hotel.");
 			roomStatus[roomNo] = false;
@@ -69,7 +81,9 @@ public class HotelBookingSystem {
 	private static void cancelBooking() {
 		System.out.println(">>Please enter the room number you want to cancel (1-10) : ");
 
+		// get the room no from user.
 		var roomNo = scan.nextInt() - 1;
+		// if room is already booked. set room status true to cancel.
 		if (roomStatus[roomNo]) {
 			System.out.println(">>This room is not booked, please enter a valid room number.");
 		} else {
@@ -78,6 +92,7 @@ public class HotelBookingSystem {
 		}
 	}
 
+	// show the room that already booked.
 	private static void displayBookings() {
 		int roomNo = 1;
 		for (Boolean notBooked : roomStatus) {

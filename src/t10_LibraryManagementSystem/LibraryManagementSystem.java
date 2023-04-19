@@ -32,7 +32,7 @@ public class LibraryManagementSystem {
 	}
 
 	// create data of book and member
-	//
+	// 
 	private static void initializedData() {
 		var data = new Data();
 		data.seed();

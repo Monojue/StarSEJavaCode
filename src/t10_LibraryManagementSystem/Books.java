@@ -15,6 +15,7 @@ public class Books {
 		books.stream().forEach(b -> System.out.println(b.toString()));
 	}
 	
+	// display only book that can borrow(lendFlag = 0)
 	public void displayAvailableBooks() {
 		books.stream().forEach(b -> {
 			if(b.getLendFlag() == 0) {
